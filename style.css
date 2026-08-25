@@ -134,10 +134,10 @@ body::before {
   color: transparent;
 
   filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .45));
-  animation:
+  /* animation:
     quote-flow  14s linear infinite,
     quote-in    .9s cubic-bezier(.2, .8, .3, 1) both,
-    quote-float 8s ease-in-out 1s infinite;
+    quote-float 8s ease-in-out 1s infinite; */
 }
 
 .quote span {
