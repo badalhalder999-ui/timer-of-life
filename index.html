@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Badal Chandra Halder — Life Timer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <header class="header">
+      <h1>Badal Chandra Halder</h1>
+      <p class="subtitle">05 December 1996</p>
+    </header>
+
+    <main class="panels">
+
+      <!-- Current age -->
+      <section class="panel panel--age">
+        <div class="panel-head">
+          <h2 class="panel-title"><span class="dot"></span>My Current Age</h2>
+          <span class="chip">Since birth</span>
+        </div>
+
+        <div class="grid" id="age">
+          <div class="unit"><span class="value" data-unit="years">0</span><span class="label">Years</span></div>
+          <div class="unit"><span class="value" data-unit="months">0</span><span class="label">Months</span></div>
+          <div class="unit"><span class="value" data-unit="days">0</span><span class="label">Days</span></div>
+          <div class="unit"><span class="value" data-unit="hours">0</span><span class="label">Hours</span></div>
+          <div class="unit"><span class="value" data-unit="minutes">0</span><span class="label">Minutes</span></div>
+          <div class="unit"><span class="value" data-unit="seconds">0</span><span class="label">Seconds</span></div>
+        </div>
+
+        <p class="note">Time lived since 05 December 1996</p>
+      </section>
+
+      <!-- Life countdown -->
+      <section class="panel panel--life">
+        <div class="panel-head">
+          <h2 class="panel-title"><span class="dot"></span>Life Countdown</h2>
+          <span class="chip">Target · 75 years</span>
+        </div>
+
+        <div class="grid" id="countdown">
+          <div class="unit"><span class="value" data-unit="years">0</span><span class="label">Years</span></div>
+          <div class="unit"><span class="value" data-unit="months">0</span><span class="label">Months</span></div>
+          <div class="unit"><span class="value" data-unit="days">0</span><span class="label">Days</span></div>
+          <div class="unit"><span class="value" data-unit="hours">0</span><span class="label">Hours</span></div>
+          <div class="unit"><span class="value" data-unit="minutes">0</span><span class="label">Minutes</span></div>
+          <div class="unit"><span class="value" data-unit="seconds">0</span><span class="label">Seconds</span></div>
+        </div>
+
+        <p class="note">Remaining until 05 December 2071</p>
+      </section>
+
+    </main>
+
+    <!-- Shared life progress -->
+    <section class="progress" aria-label="Life progress">
+      <div class="progress-head">
+        <span>Life progress</span>
+      </div>
+      <div class="progress-bar">
+        <span class="progress-pct" id="progress-pct">0%</span>
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+      <div class="progress-foot">
+        <span>05 Dec 1996</span>
+        <span>05 Dec 2071 · 75 years</span>
+      </div>
+    </section>
+
+    <footer class="footer">Live · updates every second</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
