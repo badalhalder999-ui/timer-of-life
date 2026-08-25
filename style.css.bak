@@ -110,69 +110,38 @@ body::before {
 }
 
 /* ---------- Quote ---------- */
-/* Bengali + English are one sentence: a single gradient flows across both
-   and one animation moves the whole line. The gradient lives here on the
-   parent (not the spans) so it runs continuously through the sentence --
-   which also means the spans must stay untransformed, or background-clip
-   would break. All motion is applied to this element only. */
 .quote {
-  margin: 0 auto clamp(.4rem, 1.2vh, .8rem);
+  max-width: 40rem;              /* wide enough to keep the Bengali on one line */
+  margin: 0 auto clamp(.45rem, 1.3vh, .85rem);
   text-align: center;
-  font-weight: 700;
-  line-height: 1.5;
+  font-size: clamp(.78rem, 2vw, 1rem);
+  font-weight: 600;
+  line-height: 1.6;
 
-  /* One size for the whole sentence, inherited by both spans, so the
-     Bengali and the English render at exactly the same font-size.
-     The English line is the wider of the two, so it governs the fit. */
-  font-size: clamp(.7rem, 4.2vw, 2.6rem);
-
+  /* colorful text: gradient painted through the glyphs */
   background: linear-gradient(90deg, #4cc3f5, #a78bfa, #fb7a8e, #fbbf24, #4cc3f5);
   background-size: 300% 100%;
   background-position: 0% 50%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .45));
-  animation:
-    quote-flow  14s linear infinite,
-    quote-in    .9s cubic-bezier(.2, .8, .3, 1) both,
-    quote-float 8s ease-in-out 1s infinite;
+  animation: quote-flow 14s linear infinite;
 }
 
-.quote span {
-  display: block;
-  white-space: nowrap;              /* never wrap: one line each */
-}
+.quote span { display: block; }
 
-/* Bengali needs a script-capable font; the system stack is the offline
-   fallback. The vw term keeps the longest line inside the viewport. */
+/* Bengali needs a script-capable font. No web fonts are allowed here, so
+   fall back through the ones commonly shipped on Windows/macOS/Linux. */
 .quote-bn {
-  font-family: "Hind Siliguri", "Shonar Bangla", "Noto Sans Bengali",
-               Kalpurush, "Nirmala UI", Vrinda, system-ui, sans-serif;
-  line-height: 1.55;
+  font-family: "Nirmala UI", "Shonar Bangla", Vrinda, "Noto Sans Bengali",
+               Kalpurush, "Mukti Narrow", system-ui, sans-serif;
+  font-size: 1.06em;
+  line-height: 1.8;
 }
 
 .quote-en {
-  font-family: Lexend, "Segoe UI", system-ui, sans-serif;
-  text-transform: capitalize;
-  letter-spacing: -.01em;
-}
-
-@media (prefers-color-scheme: light) {
-  .quote { filter: drop-shadow(0 5px 12px rgba(18, 25, 45, .18)); }
-}
-
-/* Desktop only: the two lines fold into a single line. Tablet and phone
-   keep them stacked, where one combined line would be far too small. */
-@media (min-width: 1024px) {
-  .quote {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    gap: clamp(.5rem, 1.1vw, 1.1rem);
-  }
-  .quote { font-size: clamp(1rem, 2.3vw, 2.6rem); }
+  font-style: italic;
+  letter-spacing: .01em;
 }
 
 /* ---------- Panels ---------- */
@@ -406,26 +375,6 @@ body::before {
   to { background-position: 300% 50%; }
 }
 
-/* 3D entrance: the line swings down into place around its top edge. */
-@keyframes quote-in {
-  from {
-    opacity: 0;
-    transform: perspective(900px) rotateX(-82deg) translateY(-18px) scale(.94);
-  }
-  to {
-    opacity: 1;
-    transform: perspective(900px) rotateX(0deg) translateY(0) scale(1);
-  }
-}
-
-/* Continuous 3D drift: a slow tilt through x/y with a little depth. */
-@keyframes quote-float {
-  0%, 100% { transform: perspective(900px) rotateX(0deg)  rotateY(0deg)  translateZ(0); }
-  25%      { transform: perspective(900px) rotateX(5deg)  rotateY(-6deg) translateZ(14px); }
-  50%      { transform: perspective(900px) rotateX(0deg)  rotateY(0deg)  translateZ(22px); }
-  75%      { transform: perspective(900px) rotateX(-5deg) rotateY(6deg)  translateZ(14px); }
-}
-
 @keyframes pulse {
   0%, 100% { opacity: 1;   box-shadow: 0 0 0 3px var(--accent-soft); }
   50%      { opacity: .65; box-shadow: 0 0 0 6px transparent; }
@@ -476,13 +425,11 @@ body::before {
   }
   .unit { padding: clamp(.45rem, 1.2vh, .7rem) .25rem; }
   .subtitle { margin-top: .3rem; }
-  .quote { margin-bottom: .3rem; }
-}
-
-/* Narrow phones: the enlarged quote overruns 640px-tall screens by a few
-   pixels. Tighten its leading just enough to fit without scrolling. */
-@media (max-width: 400px) {
-  .quote { margin-bottom: .1rem; }
-  .quote-bn { line-height: 1.38; }
-  .quote-en { line-height: 1.3; }
+  .quote {
+    max-width: 100%;
+    font-size: clamp(.72rem, 3.4vw, .88rem);
+    line-height: 1.5;
+    margin-bottom: .35rem;
+  }
+  .quote-bn { line-height: 1.65; }
 }
