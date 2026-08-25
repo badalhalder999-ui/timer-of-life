@@ -109,6 +109,41 @@ body::before {
   text-transform: uppercase;
 }
 
+/* ---------- Quote ---------- */
+.quote {
+  max-width: 40rem;              /* wide enough to keep the Bengali on one line */
+  margin: 0 auto clamp(.45rem, 1.3vh, .85rem);
+  text-align: center;
+  font-size: clamp(.78rem, 2vw, 1rem);
+  font-weight: 600;
+  line-height: 1.6;
+
+  /* colorful text: gradient painted through the glyphs */
+  background: linear-gradient(90deg, #4cc3f5, #a78bfa, #fb7a8e, #fbbf24, #4cc3f5);
+  background-size: 300% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: quote-flow 14s linear infinite;
+}
+
+.quote span { display: block; }
+
+/* Bengali needs a script-capable font. No web fonts are allowed here, so
+   fall back through the ones commonly shipped on Windows/macOS/Linux. */
+.quote-bn {
+  font-family: "Nirmala UI", "Shonar Bangla", Vrinda, "Noto Sans Bengali",
+               Kalpurush, "Mukti Narrow", system-ui, sans-serif;
+  font-size: 1.06em;
+  line-height: 1.8;
+}
+
+.quote-en {
+  font-style: italic;
+  letter-spacing: .01em;
+}
+
 /* ---------- Panels ---------- */
 .panels {
   width: 100%;
@@ -336,6 +371,10 @@ body::before {
   to   { opacity: 1; transform: none; }
 }
 
+@keyframes quote-flow {
+  to { background-position: 300% 50%; }
+}
+
 @keyframes pulse {
   0%, 100% { opacity: 1;   box-shadow: 0 0 0 3px var(--accent-soft); }
   50%      { opacity: .65; box-shadow: 0 0 0 6px transparent; }
@@ -386,4 +425,11 @@ body::before {
   }
   .unit { padding: clamp(.45rem, 1.2vh, .7rem) .25rem; }
   .subtitle { margin-top: .3rem; }
+  .quote {
+    max-width: 100%;
+    font-size: clamp(.72rem, 3.4vw, .88rem);
+    line-height: 1.5;
+    margin-bottom: .35rem;
+  }
+  .quote-bn { line-height: 1.65; }
 }
